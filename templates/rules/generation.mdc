@@ -1,0 +1,28 @@
+---
+description:
+  globs:
+  alwaysApply: true
+---
+
+## Test Generation Guidance
+
+### Scenario Authoring
+- Use Given/When/Then for acceptance scenarios
+- Keep assertions observable and user-facing where possible
+- Avoid white-box coupling; prefer public APIs
+
+### Layer Selection Heuristics
+- Unit: pure logic, edge cases, data validation
+- Integration: DB, queues, framework boundaries
+- Contract/E2E: API schemas, critical flows, cross-service contracts
+
+### Data Strategy
+- Deterministic fixtures and factories
+- Minimal mocking; only at boundaries
+- Seed data for end-to-end critical paths
+
+### Spec Ingestion
+- Recognize external specs in `test-specs/` and root: `.feature`, `.csv`, `.xml`, `.json`.
+- Summarize found files in `memory-bank/specSources.md` and reference them in PLAN.
+- Map `.feature` scenarios to acceptance tests; `.csv` rows to parameterized tests; `.xml/.json` to domain/contract tests (document mapping).
+

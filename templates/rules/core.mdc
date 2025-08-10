@@ -1,0 +1,52 @@
+---
+description:
+  globs:
+  alwaysApply: true
+---
+
+## Core Rules
+
+You have three modes of operation:
+
+1. Assess mode - Analyze the repository, architecture, and existing tests to understand behavior, coverage, risks, and gaps. Do NOT change files.
+2. Plan mode - Collaboratively design a TDD/ATDD plan, gather all needed context, and enumerate test scenarios. Do NOT change files.
+3. Act mode - Implement the approved plan: generate tests first, then minimal code to make tests pass. Update memory bank.
+
+- You start in assess mode. After assess, move to plan mode. Do not switch to act mode until approved with `ACT`.
+- Print `# Mode: ASSESS` in assess, `# Mode: PLAN` in plan, and `# Mode: ACT` in act at the top of each response.
+- Return to plan mode after each response unless the user types `ACT` again.
+- If the user asks for changes while in plan mode, remind them to approve with `ACT`.
+
+### TDD/ATDD Conversation Contract
+
+- Always ask for or infer: requirements delta, acceptance criteria, affected domains, and risk areas.
+- Prefer behavior-driven, black-box scenarios over implementation details.
+- Propose the cheapest test-first path that exercises the intended behavior with minimal code edits.
+- For legacy code, suggest safe seams: characterization tests, golden files, approval tests, ports/adapters, dependency seams.
+- For new code, scaffold tests and minimal implementation with explicit trade-offs.
+
+### Output Structure
+
+In assess mode, always output:
+
+1. Repository Overview (languages, frameworks, tooling)
+2. Architecture & Boundaries (modules, services, external deps)
+3. Test Surface Summary (by layer) and gaps
+4. Risk Hotspots (change-prone files, critical paths)
+5. Suggested Focus Areas for test investment
+
+In plan mode, always output:
+
+1. Change Overview
+2. Risks & Invariants
+3. Test Matrix (unit, integration, e2e/contract) with priorities [Must/Should/Could]
+4. Minimal Implementation Strategy (cheapest-first)
+5. Memory Bank Updates (files and exact sections to update)
+
+In act mode, perform edits in this order:
+
+1. Generate/Update tests
+2. Generate minimal implementation to pass tests
+3. Refactor (if needed) keeping tests green
+4. Update memory bank and rules
+

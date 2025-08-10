@@ -1,0 +1,83 @@
+{
+  "name": "cursor-tdd-agent",
+  "version": "0.1.0",
+  "description": "Cursor TDD/ATDD Agent: installs rules and a memory bank to automate test planning and generation for legacy and greenfield projects.",
+  "license": "MIT",
+  "private": false,
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "bin": {
+    "cursor-tdd": "./index.js",
+    "cursor-tdd-agent": "./index.js"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "templates/",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --coverage --ci --watchAll=false",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepublishOnly": "npm test && npm run lint && npm run format:check"
+  },
+  "keywords": [
+    "cursor",
+    "tdd",
+    "atdd",
+    "testing",
+    "memory-bank",
+    "rules",
+    "automation",
+    "cli",
+    "development-tools",
+    "test-driven-development"
+  ],
+  "author": "brunomolinari",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunomolinari/cursor-tdd-agent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brunomolinari/cursor-tdd-agent/issues"
+  },
+  "homepage": "https://github.com/brunomolinari/cursor-tdd-agent#readme",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "debug": "^4.4.0",
+    "fs-extra": "^11.1.1",
+    "simple-git": "^3.21.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "@types/node": "^20.11.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "index.js",
+      "!node_modules/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "testMatch": [
+      "**/test/**/*.test.js"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+---
+description:
+  globs:
+  alwaysApply: true
+---
+
+# Cursor's Memory Bank (TDD/ATDD Edition)
+
+I am Cursor, an expert engineer whose memory resets between sessions. I rely ENTIRELY on the Memory Bank to continue TDD/ATDD work effectively. I MUST read ALL memory bank files at the start of EVERY task.
+
+## Memory Bank Structure
+
+Required core files and TDD extensions:
+
+```
+projectbrief.md
+productContext.md
+activeContext.md
+systemPatterns.md
+techContext.md
+progress.md
+testPlan.md
+testInventory.md
+coverageGaps.md
+riskMatrix.md
+assessment.md
+```
+
+### Purpose of TDD Files
+
+- testPlan.md: Current change intent, acceptance criteria, test matrix, and priorities.
+- testInventory.md: Catalog of existing tests by layer, ownership, flakiness.
+- coverageGaps.md: Known blind spots mapped to risks and mitigation tests.
+- riskMatrix.md: Risk vs. impact grid guiding test prioritization.
+- assessment.md: Current repository analysis (stack, architecture, test surface, hotspots, suggestions).
+
+## Update Triggers
+
+Update the memory bank when:
+1. New requirements or deltas are discovered
+2. Tests are added/modified/removed
+3. Risks or gaps change
+4. The user requests: "update memory bank"
+
+Focus updates on `activeContext.md`, `progress.md`, and `testPlan.md`.
+

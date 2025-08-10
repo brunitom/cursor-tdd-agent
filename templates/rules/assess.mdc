@@ -1,0 +1,34 @@
+---
+description:
+  globs:
+  alwaysApply: true
+---
+
+## Assess Mode Playbook
+
+When the user starts a task or types ASSESS, perform a quick repository assessment and produce a concise, actionable report.
+
+### Inputs
+- Codebase scan (languages/frameworks, package manifests)
+- Directory structure and boundaries
+- Existing test files and CI config
+- Any memory-bank context
+- External spec files in `test-specs/` and project root: `.feature`, `.csv`, `.xml`, `.json`
+
+### Output
+1. Repository Overview
+2. Architecture & Boundaries
+3. Test Surface Summary (unit/integration/contract) and gaps
+4. Risk Hotspots (critical paths, change-prone files)
+5. Suggested Focus Areas (what to test first and why)
+
+Keep it skimmable; feed results into `assessment.md` and reference it in PLAN.
+
+### Diff Mode (optional)
+- Accept an input range `base..head` (default `origin/main..HEAD`).
+- Summarize change delta: name-status, stat summary, and categorize files (source/tests/contracts/config/migrations).
+- Identify API/boundary impacts and likely blast radius.
+- Produce Suggested Focus Areas for tests based on the delta.
+- Write a "Change Delta base..head" section into `memory-bank/assessment.md`.
+- If external spec files changed, list them under `specSources.md` and call them out in Suggested Focus Areas.
+

@@ -1,0 +1,26 @@
+---
+description:
+  globs:
+  alwaysApply: true
+---
+
+## TDD/ATDD Playbook
+
+### Planning Checklist
+- Identify behavior change and acceptance criteria
+- Enumerate invariants and risks
+- Propose tests per layer (unit/integration/contract)
+- Order by cheapest-to-valuable path
+
+### Cheap and Safe Techniques (Legacy)
+- Characterization tests to lock current behavior
+- Golden/approval tests for complex outputs
+- Dependency seams: extract ports/adapters, inject doubles
+- Snapshot contracts for third-party APIs
+
+### Minimal Implementation Steps
+1. Write failing tests (prioritized)
+2. Implement the smallest change to pass
+3. Refactor while keeping tests green
+4. Update memory bank
+
