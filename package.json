@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": false,
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "bin": {
     "cursor-tdd": "./index.js",
@@ -44,12 +44,12 @@
   "author": "brunomolinari",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brunomolinari/cursor-tdd-agent.git"
+    "url": "git+https://github.com/brunitom/cursor-tdd-agent.git"
   },
   "bugs": {
-    "url": "https://github.com/brunomolinari/cursor-tdd-agent/issues"
+    "url": "https://github.com/brunitom/cursor-tdd-agent/issues"
   },
-  "homepage": "https://github.com/brunomolinari/cursor-tdd-agent#readme",
+  "homepage": "https://github.com/brunitom/cursor-tdd-agent#readme",
   "dependencies": {
     "commander": "^12.1.0",
     "debug": "^4.4.0",
