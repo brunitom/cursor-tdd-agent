@@ -6,6 +6,7 @@
 ### Quick Start
 
 Prerequisites:
+
 - Node.js >= 18
 - Git installed
 
@@ -139,11 +140,11 @@ node index.js assess --diff origin/main..HEAD --write  # append diff summary
 
 ### CLI ↔ Chat mapping
 
-| Chat mode | What it does | Closest CLI |
-|---|---|---|
-| ASSESS | Analyze repo/test surface and optional diff | `node index.js assess --diff base..head [--write]` |
-| PLAN | Propose Test Matrix, risks, cheapest-first steps | n/a (produces docs in memory bank) |
-| ACT | Tests-first edits, minimal implementation, docs | `node index.js init` + guided changes |
+| Chat mode | What it does                                     | Closest CLI                                        |
+| --------- | ------------------------------------------------ | -------------------------------------------------- |
+| ASSESS    | Analyze repo/test surface and optional diff      | `node index.js assess --diff base..head [--write]` |
+| PLAN      | Propose Test Matrix, risks, cheapest-first steps | n/a (produces docs in memory bank)                 |
+| ACT       | Tests-first edits, minimal implementation, docs  | `node index.js init` + guided changes              |
 
 ### Example output (assess diff)
 

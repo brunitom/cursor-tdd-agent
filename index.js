@@ -72,12 +72,40 @@ function formatList(title, items) {
 }
 
 async function assessDiff({ baseRef, headRef, write }) {
-  const base = baseRef || 'origin/main';
+  // Determine a safe git range even when repository has no remote or only one commit
+  const EMPTY_TREE = '4b825dc642cb6eb9a060e54bf8d69288fbee4904';
+  let base = baseRef || 'origin/main';
   const head = headRef || 'HEAD';
-  await git.fetch();
-  const changedNames = await git.diff(['--name-status', `${base}..${head}`]);
-  const changedStats = await git.diff(['--stat', `${base}..${head}`]);
-  const changedFiles = await git.diff(['--name-only', `${base}..${head}`]);
+
+  // Try to fetch remotes, but ignore failures (e.g., no network or no remote)
+  try {
+    await git.fetch();
+  } catch (_) {
+    // ignore
+  }
+
+  // Verify base exists; otherwise pick a sensible fallback
+  async function resolveBase() {
+    try {
+      await git.revparse(['--verify', base]);
+      return base;
+    } catch (_) {
+      // If HEAD has a parent, use HEAD~1; else use empty tree for initial commit
+      try {
+        await git.revparse(['--verify', `${head}~1`]);
+        return `${head}~1`;
+      } catch (__) {
+        return EMPTY_TREE;
+      }
+    }
+  }
+
+  base = await resolveBase();
+
+  const range = `${base}..${head}`;
+  const changedNames = await git.diff(['--name-status', range]);
+  const changedStats = await git.diff(['--stat', range]);
+  const changedFiles = await git.diff(['--name-only', range]);
   const files = changedFiles.split('\n').filter(Boolean);
 
   const buckets = {
@@ -98,7 +126,7 @@ async function assessDiff({ baseRef, headRef, write }) {
   };
 
   const report = [
-    `# Change Delta ${base}..${head}`,
+    `# Change Delta ${range}`,
     '',
     '## Summary',
     '```',
