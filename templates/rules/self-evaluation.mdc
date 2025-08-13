@@ -1,0 +1,35 @@
+---
+description:
+  globs:
+  alwaysApply: true
+---
+
+## Self-Evaluation on Proposed Changes
+
+Every time you propose edits (code, config, or docs), include a short "Self-Evaluation" section at the end of your response. Keep it concise and focused on safety:
+
+- Regression safeguards:
+  - State what tests you added/updated and which changed behaviors they cover.
+  - Confirm critical paths and public APIs are preserved unless explicitly intended.
+  - Note any migration/config risks and how they’re smoke-checked or rolled back.
+
+- Duplication check:
+  - Confirm you searched for similar functions/modules/utilities and avoided copy-paste.
+  - If similar logic exists, reuse or extract into a shared utility; explain if duplication is temporarily unavoidable.
+
+- Diff minimality:
+  - Confirm the edit is the smallest change necessary to pass tests and meet the requirement.
+
+- Green verification:
+  - Run tests/lints/build (where applicable) after edits and report pass/fail succinctly; fix red before proceeding.
+
+Format example to append after edits:
+
+```
+Self-Evaluation
+- Regressions: Covered by tests X, Y (areas A, B). No public API break.
+- Duplication: No similar utility found; reused Z module.
+- Minimal diff: Only touched files F1, F2; no unrelated formatting.
+- Green: Tests/lints/build pass locally.
+```
+

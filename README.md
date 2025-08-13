@@ -128,7 +128,7 @@ node node_modules/.bin/cursor-tdd-agent init
 
 ### Files created/used
 
-- `.cursor/rules/`: `core.mdc`, `assess.mdc`, `tdd-playbook.mdc`, `generation.mdc`, `memory-bank.mdc`, `compatibility.mdc`
+- `.cursor/rules/`: `core.mdc`, `assess.mdc`, `tdd-playbook.mdc`, `generation.mdc`, `memory-bank.mdc`, `compatibility.mdc`, `self-evaluation.mdc`
 - `memory-bank/`: `projectbrief.md`, `productContext.md`, `activeContext.md`, `systemPatterns.md`, `techContext.md`, `progress.md`, `testPlan.md`, `testInventory.md`, `coverageGaps.md`, `riskMatrix.md`, `assessment.md`, `specSources.md`
 
 ### Command cheat sheet
