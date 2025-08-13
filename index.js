@@ -4,6 +4,7 @@ const path = require('path');
 const { program } = require('commander');
 const simpleGit = require('simple-git');
 const debug = require('debug')('cursor-tdd-agent');
+const packageJson = require('./package.json');
 
 const TEMPLATES_DIR = path.join(__dirname, 'templates');
 const RULES_SRC = path.join(TEMPLATES_DIR, 'rules');
@@ -213,7 +214,7 @@ async function init({ force, skipMemory }) {
 program
   .name('cursor-tdd-agent')
   .description('Install Cursor TDD/ATDD agent rules and memory bank templates')
-  .version('0.1.0');
+  .version(packageJson.version);
 
 program
   .command('init')
