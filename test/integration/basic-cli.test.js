@@ -1,6 +1,7 @@
 const { execSync } = require('child_process');
 const fs = require('fs-extra');
 const path = require('path');
+const pkg = require('../../package.json');
 
 describe('Basic CLI Tests', () => {
   const originalCwd = process.cwd();
@@ -35,7 +36,7 @@ describe('Basic CLI Tests', () => {
         cwd: originalCwd,
       });
 
-      expect(output.trim()).toBe('0.1.0');
+      expect(output.trim()).toBe(pkg.version);
     });
 
     it('should show help when --help flag is used', () => {
