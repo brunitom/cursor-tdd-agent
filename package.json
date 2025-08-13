@@ -1,6 +1,6 @@
 {
   "name": "cursor-tdd-agent",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Cursor TDD/ATDD Agent: installs rules and a memory bank to automate test planning and generation for legacy and greenfield projects.",
   "license": "MIT",
   "private": false,
