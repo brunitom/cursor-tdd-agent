@@ -21,6 +21,16 @@ description:
 - Minimal mocking; only at boundaries
 - Seed data for end-to-end critical paths
 
+### Technique Selection
+- Read `memory-bank/assessment.md`, `riskMatrix.md`, `specSources.md`.
+- Use diff buckets to choose techniques:
+  - contracts/specs → Contract + Decision Tables
+  - migrations/config → Smoke + rollback; Pairwise across env flags
+  - core logic/validation → Boundary + Equivalence
+  - stateful modules → State Transition
+  - legacy touched → Characterization
+- Output Test Matrix with [Must/Should/Could], mapping each scenario to a technique and observable.
+
 ### Spec Ingestion
 - Recognize external specs in `test-specs/` and root: `.feature`, `.csv`, `.xml`, `.json`.
 - Summarize found files in `memory-bank/specSources.md` and reference them in PLAN.

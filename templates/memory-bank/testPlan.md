@@ -19,6 +19,9 @@
 | Integration  |          | Should   |               |            |
 | Contract/E2E |          | Could    |               |            |
 
+## Technique Rationale
+- Rationale:
+
 ## Data and Fixtures
 
 - Seed data:

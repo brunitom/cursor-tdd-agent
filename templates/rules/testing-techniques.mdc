@@ -1,0 +1,96 @@
+---
+description:
+  globs:
+  alwaysApply: true
+---
+
+## Test Design Techniques (Standardized)
+
+Use this selection heuristic first:
+- Data validation → Equivalence + Boundary
+- Rule combinations → Decision Tables (+ Pairwise if combos explode)
+- Stateful flows → State Transition
+- Feature flags/config/env matrix → Pairwise/Combinatorial
+- External APIs/schemas → Contract tests
+- Legacy/unknown behavior → Characterization
+- Algorithms/randomness → Property-based
+- Security/performance → Non-functional checks
+- Migrations/config → Smoke + rollback
+
+For every technique below, include in PLAN:
+- Technique name and rationale
+- Scenarios (Given/When/Then), observables, and data set
+- Traceability: link to requirements/risk
+- Evidence: test file names and expected artifacts
+
+### 1) Equivalence Partitioning (EP)
+- Use when: Inputs can be grouped into valid/invalid classes.
+- Steps: Identify classes → Pick 1–2 reps per class → Add “just inside/outside”.
+- Checklist: Classes exhaustive; reps minimal; link to field constraints.
+- Pitfalls: Over-sampling; missing invalid or empty/null classes.
+
+### 2) Boundary Value Analysis (BVA)
+- Use when: Numeric/range/length/date constraints exist.
+- Steps: Test min-1, min, min+1 and max-1, max, max+1.
+- Checklist: Both ends covered; off-by-one; locale/timezone if date/time.
+- Pitfalls: Ignoring inclusive/exclusive semantics; time boundaries.
+
+### 3) Decision Tables
+- Use when: Multiple rules/conditions combine to outcomes.
+- Steps: List conditions → Build table → Reduce via pairwise if large.
+- Checklist: Every outcome row has tests; contradictions resolved.
+- Pitfalls: Missing “else/otherwise”; untested forbidden combos.
+
+### 4) State Transition Testing
+- Use when: Workflow or stateful domain (events/guards).
+- Steps: Enumerate states/events → Valid/invalid transitions → Happy + error.
+- Checklist: Start/end states; guard violations; persistence/rollback.
+- Pitfalls: Skipping error transitions; ignoring timers/concurrency.
+
+### 5) Pairwise / Combinatorial
+- Use when: Many flags/configs/options interact.
+- Steps: List factors/levels → Generate pairwise set → Add high-risk triples.
+- Checklist: Constraints honored; risky pairs included; env matrix noted.
+- Pitfalls: Treating pairwise as coverage for algorithmic logic.
+
+### 6) Property-based Testing (PBT)
+- Use when: Algorithms, transformations, or invariants exist.
+- Steps: Define properties → Generate inputs → Shrink failures.
+- Checklist: Deterministic seeds; edge domains; invariants tied to spec.
+- Pitfalls: Vague properties; nondeterminism; missing oracles.
+
+### 7) Characterization Testing
+- Use when: Legacy/unknown behavior must be preserved.
+- Steps: Capture current outputs on public seams → Freeze (“golden”).
+- Checklist: Public API only; stable fixtures; document intent/risks.
+- Pitfalls: Cementing bugs; overfitting to volatile outputs.
+
+### 8) Contract/API Schema Testing
+- Use when: Public APIs/events/schemas change or integrate.
+- Steps: Validate schema compat → Positive/negative cases → Versioning rules.
+- Checklist: Back/forward compat; error codes; required/optional fields.
+- Pitfalls: Skipping negative schemas; ignoring deprecations.
+
+### 9) Risk-based Testing
+- Use when: Limited time; prioritize by impact x likelihood.
+- Steps: Rank risks → Map to techniques → Assign Must/Should/Could.
+- Checklist: High-risk paths covered first; traceability to risk matrix.
+- Pitfalls: Unstated assumptions; stale risk data.
+
+### 10) Non-functional (Perf/Security Smoke)
+- Use when: SLAs, sensitive flows, or perf budgets exist.
+- Steps: Define budgets/checks → Minimal load/smoke → Alert thresholds.
+- Checklist: Reproducible env; stable thresholds; auth/ACL checks.
+- Pitfalls: Flaky env; false positives from noisy baselines.
+
+### 11) Migration/Config Smoke & Rollback
+- Use when: Migrations, feature toggles, infra/config changes.
+- Steps: Pre/post checks → Idempotency → Rollback path.
+- Checklist: Data integrity; toggles on/off; rollback validated.
+- Pitfalls: Only testing “happy” forward path.
+
+### 12) BDD/Acceptance
+- Use when: End-to-end behavior matters to users/stakeholders.
+- Steps: Given/When/Then; user-observable outcomes; examples/tables.
+- Checklist: Business language; examples-as-tests; aligns with acceptance criteria.
+- Pitfalls: UI-coupled flaky steps; hidden assertions.
