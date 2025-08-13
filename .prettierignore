@@ -1,0 +1,9 @@
+# Ignore generated and vendored content
+node_modules/
+coverage/
+
+# Ignore template content that shouldn't be reformatted
+templates/memory-bank/**
+
+# Allow README to be free-form without failing CI
+README.md

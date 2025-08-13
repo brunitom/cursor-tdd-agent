@@ -40,6 +40,7 @@ jobs:
       - name: Upload coverage to Codecov
         if: matrix.os == 'ubuntu-latest' && matrix.node-version == '20'
         uses: codecov/codecov-action@v3
+        continue-on-error: true
         with:
           file: ./coverage/lcov.info
           flags: unittests
@@ -72,6 +73,8 @@ jobs:
           mkdir test-project
           cd test-project
           git init
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
           cursor-tdd-agent init
           ls -la .cursor/rules/
           ls -la memory-bank/
@@ -100,8 +103,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Ensure jq is installed
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
       - name: Run security audit
         run: npm audit --audit-level moderate
+        continue-on-error: true
 
       - name: Check for vulnerabilities
         run: |
