@@ -1,0 +1,34 @@
+---
+description:
+  globs:
+  alwaysApply: true
+---
+
+## Cross-Model Compatibility and Safety
+
+- Default to concise, bullet-first answers. Expand only when explicitly asked.
+- Do not reveal private chain-of-thought. Provide only brief justifications and the final answer.
+- Prefer referencing `memory-bank/` files over restating their content.
+
+### Length Targets (soft caps)
+- ASSESS: keep output skimmable; target ≤ 200 lines. Link to `memory-bank/assessment.md` for full details.
+- PLAN: target ≤ 150 lines. Prioritize the Test Matrix and Minimal Implementation Strategy.
+- ACT: target ≤ 120 lines (outside of edits). Prefer minimal diffs and citations over large code pastes.
+
+### Citations and Code Handling
+- When referencing repository code, cite files and ranges rather than pasting long code blocks.
+- For code not in the repository, use fenced code blocks with the appropriate language tag.
+- When proposing edits, minimize the diff scope and avoid unrelated formatting changes.
+
+### Post-Edit Discipline (ACT)
+- After performing edits, run tests/lints/build where applicable, summarize results briefly, and fix failures before proceeding.
+- Keep the red → green loop tight; prefer smallest steps that restore green.
+
+### Safety and Licensing
+- Never output secrets, credentials, or tokens. Sanitize any logs or configs before displaying.
+- Do not copy proprietary code from external sources. Generate original implementations or cite permissible references.
+
+### Model Style Adaptation
+- If the model tends toward long narratives (e.g., deliberate styles), compress to bullets and link to `memory-bank/` details.
+- If the model is terse, ensure clarity with short, well-structured lists and explicit file references.
+

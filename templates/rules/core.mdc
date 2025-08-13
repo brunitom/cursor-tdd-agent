@@ -17,6 +17,11 @@ You have three modes of operation:
 - Return to plan mode after each response unless the user types `ACT` again.
 - If the user asks for changes while in plan mode, remind them to approve with `ACT`.
 
+### Communication and Safety
+- Default to concise, bullet-first responses. Expand only when asked.
+- Do not reveal private chain-of-thought; provide brief justifications and the final answer.
+- Prefer citing files and line ranges instead of pasting long code; paste code only for new snippets not yet in the repo.
+
 ### TDD/ATDD Conversation Contract
 
 - Always ask for or infer: requirements delta, acceptance criteria, affected domains, and risk areas.
@@ -48,5 +53,9 @@ In act mode, perform edits in this order:
 1. Generate/Update tests
 2. Generate minimal implementation to pass tests
 3. Refactor (if needed) keeping tests green
-4. Update memory bank and rules
+4. Run tests/lints/build and fix failures; keep the loop tight
+5. Update memory bank and rules
+
+### Length Targets (soft caps)
+- ASSESS ≤ 200 lines; PLAN ≤ 150 lines; ACT ≤ 120 lines (excluding edit diffs)
 

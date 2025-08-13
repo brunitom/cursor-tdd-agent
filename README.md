@@ -38,6 +38,7 @@ Reference: [Cursor Memory Bank digest](https://gitdocs1.s3.amazonaws.com/digests
   - **ACT**: Generate tests first, then the minimal code to pass, and update the Memory Bank.
 - Diff-aware ASSESS: summarize `base..head` changes and append to `memory-bank/assessment.md`.
 - Spec ingestion: indexes `.feature`, `.csv`, `.xml`, `.json` in `test-specs/` (or root) and records them in `memory-bank/specSources.md`.
+ - Cross-model compatibility: `.cursor/rules/compatibility.mdc` enforces concise outputs, avoids chain-of-thought, favors citations over long code pastes, and adds post-edit test/lint discipline with soft length caps.
 
 ### Install
 
@@ -127,7 +128,7 @@ node node_modules/.bin/cursor-tdd-agent init
 
 ### Files created/used
 
-- `.cursor/rules/`: `core.mdc`, `assess.mdc`, `tdd-playbook.mdc`, `generation.mdc`, `memory-bank.mdc`
+- `.cursor/rules/`: `core.mdc`, `assess.mdc`, `tdd-playbook.mdc`, `generation.mdc`, `memory-bank.mdc`, `compatibility.mdc`
 - `memory-bank/`: `projectbrief.md`, `productContext.md`, `activeContext.md`, `systemPatterns.md`, `techContext.md`, `progress.md`, `testPlan.md`, `testInventory.md`, `coverageGaps.md`, `riskMatrix.md`, `assessment.md`, `specSources.md`
 
 ### Command cheat sheet
