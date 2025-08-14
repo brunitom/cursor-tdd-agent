@@ -55,6 +55,10 @@ jobs:
       - name: Bump version (manual trigger)
         if: github.event_name == 'workflow_dispatch'
         run: |
+          # Reset to current published version to avoid conflicts
+          CURRENT_VERSION=$(npm view cursor-tdd-agent version 2>/dev/null || echo "0.1.0")
+          npm version $CURRENT_VERSION --no-git-tag-version --allow-same-version
+          # Now bump to next version
           npm version ${{ github.event.inputs.version }} --no-git-tag-version
           VERSION=$(node -p "require('./package.json').version")
           echo "NEW_VERSION=$VERSION" >> $GITHUB_ENV
@@ -64,7 +68,7 @@ jobs:
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
           echo "NEW_VERSION=$VERSION" >> $GITHUB_ENV
-          npm version $VERSION --no-git-tag-version
+          npm version $VERSION --no-git-tag-version --allow-same-version
 
       - name: Build package
         run: npm pack
