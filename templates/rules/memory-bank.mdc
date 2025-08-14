@@ -34,13 +34,26 @@ assessment.md
 - riskMatrix.md: Risk vs. impact grid guiding test prioritization.
 - assessment.md: Current repository analysis (stack, architecture, test surface, hotspots, suggestions).
 
-## Update Triggers
+## Update Triggers and Specific Actions
 
-Update the memory bank when:
-1. New requirements or deltas are discovered
-2. Tests are added/modified/removed
-3. Risks or gaps change
-4. The user requests: "update memory bank"
+### Automatic Updates (During ACT Phase)
+1. **New requirements discovered** → Update `testPlan.md` (add to backlog), `specSources.md` (if from specs)
+2. **Tests added/modified/removed** → Update `testInventory.md` (layer, coverage, flakiness), `coverageGaps.md` (fill gaps)
+3. **Architecture/boundaries changed** → Update `assessment.md` (boundaries section), `systemPatterns.md`
+4. **New risks discovered** → Update `riskMatrix.md` (impact/likelihood), `coverageGaps.md` (mitigation tests)
+5. **Requirements completed** → Update `progress.md` (mark done), `activeContext.md` (next priorities)
 
-Focus updates on `activeContext.md`, `progress.md`, and `testPlan.md`.
+### Manual Updates (On User Request)
+- "update memory bank" → Sync all files with current project state
+- "assess" → Update `assessment.md` with current repository analysis
+- New specs provided → Update `specSources.md`, cross-reference with existing
+
+### File-Specific Update Rules
+- **activeContext.md**: Current focus, next 2-3 priorities, blockers
+- **progress.md**: Completed requirements with test evidence, current velocity
+- **testPlan.md**: Active requirements with Test Matrix, archived completed items
+- **testInventory.md**: All tests by layer/file, ownership, last-run status, flakiness notes
+- **coverageGaps.md**: Known blind spots, risk rating, planned mitigation tests
+- **riskMatrix.md**: Impact vs likelihood grid, test coverage per risk
+- **assessment.md**: Repository structure, architecture, test surface analysis
 

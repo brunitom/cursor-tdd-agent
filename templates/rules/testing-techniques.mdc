@@ -6,16 +6,26 @@ description:
 
 ## Test Design Techniques (Standardized)
 
-Use this selection heuristic first:
-- Data validation → Equivalence + Boundary
-- Rule combinations → Decision Tables (+ Pairwise if combos explode)
-- Stateful flows → State Transition
-- Feature flags/config/env matrix → Pairwise/Combinatorial
-- External APIs/schemas → Contract tests
-- Legacy/unknown behavior → Characterization
-- Algorithms/randomness → Property-based
-- Security/performance → Non-functional checks
-- Migrations/config → Smoke + rollback
+### Requirement Type → Testing Technique Mapping
+
+#### By Format Source:
+- **Natural language requirements** → Risk-based + BDD/Acceptance
+- **.feature files** → BDD/Acceptance + State Transition (for workflows)  
+- **.json/.xml schemas** → Contract/API Schema + Equivalence/Boundary (for validation)
+- **.md user stories** → BDD/Acceptance + Decision Tables (for business rules)
+- **.html mockups** → UI/Integration + Non-functional (accessibility, performance)
+
+#### By Requirement Category:
+- **Data validation** → Equivalence + Boundary + Property-based
+- **Rule combinations** → Decision Tables (+ Pairwise if combos explode)
+- **Stateful flows/workflows** → State Transition + BDD scenarios
+- **Feature flags/config/env matrix** → Pairwise/Combinatorial
+- **External APIs/schemas** → Contract tests + Boundary validation
+- **Legacy/unknown behavior** → Characterization + Risk-based
+- **Algorithms/randomness** → Property-based + Boundary
+- **Security/performance** → Non-functional checks + Risk-based
+- **Migrations/config** → Smoke + rollback + Characterization
+- **UI changes** → BDD scenarios + Non-functional (a11y)
 
 For every technique below, include in PLAN:
 - Technique name and rationale

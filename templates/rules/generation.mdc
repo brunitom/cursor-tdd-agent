@@ -32,8 +32,16 @@ description:
   - legacy touched → Characterization
 - Output Test Matrix with [Must/Should/Could], mapping each scenario to a technique and observable.
 
-### Spec Ingestion
-- Recognize external specs in `test-specs/` and root: `.feature`, `.csv`, `.xml`, `.json`.
-- Summarize found files in `memory-bank/specSources.md` and reference them in PLAN.
-- Map `.feature` scenarios to acceptance tests; `.csv` rows to parameterized tests; `.xml/.json` to domain/contract tests (document mapping).
+### Spec Ingestion and Integration
+- **Auto-discover specs** in `test-specs/` and project root: `.feature`, `.csv`, `.xml`, `.json`, `.md`, `.html`
+- **Cross-reference** with `memory-bank/specSources.md` for existing mappings
+- **Format-specific mapping**:
+  - `.feature` scenarios → BDD/acceptance tests with Given/When/Then structure
+  - `.csv` data sets → parameterized tests with equivalence partitioning
+  - `.xml/.json` schemas → contract/API tests with schema validation
+  - `.md` requirements → user story breakdown with acceptance criteria
+  - `.html` mockups → UI integration tests with accessibility checks
+- **Update** `memory-bank/specSources.md` with newly discovered specs
+- **Trace requirements** from specs to test scenarios to implementation
+- **Flag conflicts** between existing specs and new requirements
 

@@ -59,7 +59,12 @@ cursor-tdd-agent init
 ### Daily usage
 
 - In Cursor chat:
-  - Say your requirement in natural language → the agent enters PLAN, evaluates it, proposes tests, and asks for confirmation.
+  - **Provide requirements in any format** → agent enters PLAN, evaluates, proposes tests, asks for confirmation:
+    - Natural language statements
+    - Markdown files (user stories, acceptance criteria)
+    - Feature files (.feature with Gherkin scenarios)
+    - JSON/XML schemas (API specs, data contracts)
+    - HTML mockups (with behavior descriptions)
   - Type "ASSESS" → get repo/stack/test surface, risks, and optional diff summary.
   - Type "PLAN" → get Test Matrix with Must/Should/Could and minimal implementation steps.
   - Type "ACT" or "CONFIRM TEST PLAN" → agent generates tests first (RED), then minimal code to pass (GREEN), and can propose refactors.
@@ -74,9 +79,14 @@ node index.js assess --diff origin/main..HEAD --write
 
 ### Where to add specs
 
-- Put requirements or test scenarios under `test-specs/` (or project root) as `.feature`, `.csv`, `.xml`, or `.json`.
-- ASSESS indexes them into `memory-bank/specSources.md`.
-- PLAN maps them to tests: `.feature` → acceptance; `.csv` → parameterized; `.xml/.json` → domain/contract.
+- Put requirements or test scenarios under `test-specs/` (or project root) as `.feature`, `.csv`, `.xml`, `.json`, `.md`, or `.html`.
+- Agent auto-discovers and indexes them into `memory-bank/specSources.md`.
+- PLAN maps them to tests:
+  - `.feature` → BDD/acceptance tests (Given/When/Then)
+  - `.csv` → parameterized tests (data-driven)
+  - `.xml/.json` → contract/schema validation tests
+  - `.md` → user story breakdown with acceptance criteria
+  - `.html` → UI integration tests with accessibility checks
 
 ### How to use in your 3 cases
 
