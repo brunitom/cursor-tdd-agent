@@ -59,9 +59,7 @@ describe('lib/agent public APIs (code-agnostic tests)', () => {
       const copyArgs = fs.copy.mock.calls[0];
       expect(copyArgs[0]).toBe('/src');
       expect(copyArgs[1]).toBe('/dest');
-      expect(copyArgs[2]).toEqual(
-        expect.objectContaining({ filter: expect.any(Function) })
-      );
+      expect(copyArgs[2]).toEqual(expect.objectContaining({ filter: expect.any(Function) }));
     });
   });
 
@@ -78,9 +76,7 @@ describe('lib/agent public APIs (code-agnostic tests)', () => {
     it('prints a categorized diff report using public CLI observables', async () => {
       gitMocks.fetch.mockResolvedValue(undefined);
       // Simulate base not resolvable; fallback to HEAD~1 success
-      gitMocks.revparse
-        .mockRejectedValueOnce(new Error('no base'))
-        .mockResolvedValueOnce('ok');
+      gitMocks.revparse.mockRejectedValueOnce(new Error('no base')).mockResolvedValueOnce('ok');
 
       gitMocks.diff
         .mockResolvedValueOnce('M\tsrc/index.js') // name-status
@@ -112,5 +108,3 @@ describe('lib/agent public APIs (code-agnostic tests)', () => {
     });
   });
 });
-
-
