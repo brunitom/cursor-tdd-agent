@@ -10,6 +10,7 @@ description:
 - Use Given/When/Then for acceptance scenarios
 - Keep assertions observable and user-facing where possible
 - Avoid white-box coupling; prefer public APIs
+ - Apply the Code-Agnostic Tests rule; prefer observable behavior and stable contracts
 
 ### Layer Selection Heuristics
 - Unit: pure logic, edge cases, data validation

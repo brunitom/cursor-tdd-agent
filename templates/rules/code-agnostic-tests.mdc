@@ -1,0 +1,33 @@
+---
+description:
+  globs:
+  alwaysApply: true
+---
+
+## Code-Agnostic Tests
+
+**Principle**: Tests must verify externally observable behavior and stable contracts, not internal structures or private implementation details.
+
+### Required (when proposing tests)
+- **Public seams only**: HTTP endpoints, CLI commands, exported module APIs, events, DB schemas.
+- **Observable assertions**: outputs, state changes, emitted events, logs/errors, accessibility tree (roles/names).
+- **Business language** in test names/specs; avoid file paths and private symbol names.
+- **Stable selectors**: prefer a11y roles/labels; allow `data-testid` when necessary; avoid CSS classes or DOM order.
+- **Unit scope**: exercise exported API only; don’t import private paths or non-exported members.
+- **Mocking**: only at boundaries; don’t mock internals of the unit under test.
+- **Deterministic fixtures** using builders/factories decoupled from production internals.
+
+### Forbidden (hard stops before proposing tests)
+- Importing internal paths or non-exported members; reaching into closures or private properties.
+- Asserting on private/underscore-prefixed members; snapshotting entire object graphs/DOM trees without a stable contract.
+- Referencing line numbers, file paths, component tag structure, hook names, or reducer internals not part of a public contract.
+- Patching the module under test via rewire/proxyquire; `jest.spyOn` on non-exported functions.
+
+### Migration guidance
+- If only private seams exist, introduce a public adapter/port and test through it.
+- Replace brittle DOM/class selectors with roles/labels or explicit `data-testid`.
+
+### Examples (coupled → code-agnostic)
+- “asserts component renders `.btn.primary`” → “asserts a button with accessible name ‘Submit’ is present and enabled”.
+- “spies on `internalCompute()`” → “calls exported API and asserts returned value/side effect”.
+
