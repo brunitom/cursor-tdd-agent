@@ -59,9 +59,10 @@ cursor-tdd-agent init
 ### Daily usage
 
 - In Cursor chat:
+  - Say your requirement in natural language → the agent enters PLAN, evaluates it, proposes tests, and asks for confirmation.
   - Type "ASSESS" → get repo/stack/test surface, risks, and optional diff summary.
   - Type "PLAN" → get Test Matrix with Must/Should/Could and minimal implementation steps.
-  - Type "ACT" → tests-first changes, minimal implementation, then Memory Bank updates.
+  - Type "ACT" or "CONFIRM TEST PLAN" → agent generates tests first (RED), then minimal code to pass (GREEN), and can propose refactors.
   - Say "update memory bank" anytime to sync documentation.
 
 - CLI helpers (optional):

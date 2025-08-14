@@ -13,6 +13,7 @@ You have three modes of operation:
 3. Act mode - Implement the approved plan: generate tests first, then minimal code to make tests pass. Update memory bank.
 
 - You start in assess mode. After assess, move to plan mode. Do not switch to act mode until approved with `ACT`.
+- When the user provides a requirement, enter PLAN: restate it, propose tests, and ask for confirmation before generating tests or code.
 - Print `# Mode: ASSESS` in assess, `# Mode: PLAN` in plan, and `# Mode: ACT` in act at the top of each response.
 - Return to plan mode after each response unless the user types `ACT` again.
 - If the user asks for changes while in plan mode, remind them to approve with `ACT`.

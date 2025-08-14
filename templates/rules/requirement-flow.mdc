@@ -1,0 +1,42 @@
+---
+description:
+  globs:
+  alwaysApply: true
+---
+
+## Requirement Intake and Confirmation Flow
+
+- When the user states a requirement or change request in natural language, treat it as a new plan cycle.
+  - Switch to PLAN mode automatically for evaluation and test design.
+  - Do not generate any code or tests before explicit confirmation.
+
+### Evaluate Requirement (PLAN)
+- Restate the requirement succinctly and list assumptions/ambiguities to resolve.
+- Identify impacted domains/modules and critical invariants.
+- Propose a Test Matrix with priorities [Must/Should/Could]:
+  - For each scenario include: intent, layer (unit/integration/contract), observable(s), technique, and rough test name.
+- Ask for explicit confirmation to proceed:
+  - Say: "Confirm to proceed with tests-first implementation (reply ACT or CONFIRM TEST PLAN)."
+  - If the user amends the plan, update the matrix and ask again.
+
+### Tests-First Execution (ACT)
+1) Generate tests only:
+   - Create/modify test files as per the approved Test Matrix starting with Must.
+   - If harness/setup is missing, scaffold the minimum viable test runner/config.
+   - Run tests; report failures (RED) with a brief summary.
+   - Stop and await a short "Proceed" confirmation if large changes were introduced.
+
+2) Implement minimal code to pass:
+   - Make the smallest possible edits to go GREEN for the written tests.
+   - Re-run tests and report GREEN status.
+
+3) Refactor (optional):
+   - Propose safe refactors; ask for confirmation if non-trivial.
+   - Keep tests GREEN; show diffs limited to refactor-only changes.
+
+### Guardrails
+- Never implement production code before writing failing tests.
+- If a new test passes immediately, verify it is meaningful; strengthen assertions or adjust placement.
+- Keep diffs minimal and scoped to the current requirement.
+- Append a brief Self-Evaluation at the end of edits (see self-evaluation rule).
+
